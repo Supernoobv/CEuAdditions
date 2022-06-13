@@ -1,12 +1,15 @@
 buildscript {
     repositories {
-        maven { 
-			url = 'https://maven.cleanroommc.com' 
+        maven {
+			url = 'https://maven.cleanroommc.com'
 		}
 		maven { 
 			url = 'https://repo.spongepowered.org/maven' 
 		}
-    }
+		maven {
+			name "CurseForge"
+			url "https://www.cursemaven.com"		}
+		}
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
 		if (project.use_mixins.toBoolean()) {
@@ -60,9 +63,19 @@ repositories {
     maven {
         url = 'https://repo.spongepowered.org/maven'
     }
+	maven { // GTCE
+		url = uri("https://minecraft.curseforge.com/api/maven")
+	}
+	maven {
+		name "CurseForge"
+		url "https://www.cursemaven.com"
+	}
 }
 
 dependencies {
+
+	implementation 'org.projectlombok:lombok:1.18.20'
+    deobfCompile "curse.maven:gregtech-ce-unofficial-557242:3805253"
 
 	if (project.use_assetmover.toBoolean()) {
 		deobfCompile 'com.cleanroommc:assetmover:0.2'
@@ -70,7 +83,7 @@ dependencies {
 	if (project.use_mixins.toBoolean()) {
 		deobfCompile 'zone.rong:mixinbooter:4.2'
     }
-	
+
 }
 
 sourceSets {
@@ -78,6 +91,7 @@ sourceSets {
     main {
         ext.refMap = 'mixins.' + archives_base_name + '.refmap.json'
     }
+
 
 }
 
