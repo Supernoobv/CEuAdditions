@@ -40,30 +40,30 @@ public class PollutionUtil {
     public void initFilterList() {
 
         // Optimization needed
-        filterList.put("gregtech.machine.steam_boiler_coal_bronze", ConfigHandler.polesOptions.BronzeBoilerEmissionRate);
-        filterList.put("gregtech.machine.steam_boiler_lava_bronze", ConfigHandler.polesOptions.BronzeBoilerEmissionRate);
-        filterList.put("gregtech.machine.steam_furnace_bronze", ConfigHandler.polesOptions.BronzeBoilerEmissionRate);
-        filterList.put("gregtech.machine.steam_boiler_lava_steel", ConfigHandler.polesOptions.SteelBoilerEmissionRate);
-        filterList.put("gregtech.machine.steam_boiler_coal_steel", ConfigHandler.polesOptions.SteelBoilerEmissionRate);
-        filterList.put("gregtech.machine.steam_furnace_steel", ConfigHandler.polesOptions.SteelBoilerEmissionRate);
-        filterList.put("gregtech.machine.combustion_generator.lv", ConfigHandler.polesOptions.CombustionEmissionRate);
-        filterList.put("gregtech.machine.combustion_generator.mv", ConfigHandler.polesOptions.CombustionEmissionRate * 2);
-        filterList.put("gregtech.machine.combustion_generator.hv", ConfigHandler.polesOptions.CombustionEmissionRate * 4);
-        filterList.put("gregtech.machine.gas_turbine.lv", ConfigHandler.polesOptions.GasTurbineEmissionRate);
-        filterList.put("gregtech.machine.gas_turbine.mv", ConfigHandler.polesOptions.GasTurbineEmissionRate * 2);
-        filterList.put("gregtech.machine.gas_turbine.hv", ConfigHandler.polesOptions.GasTurbineEmissionRate * 4);
-        filterList.put("gregtech.machine.primitive_blast_furnace.bronze", ConfigHandler.polesOptions.PBFEmissionRate);
-        filterList.put("gregtech.machine.electric_blast_furnace", ConfigHandler.polesOptions.EBFEmissionRate);
-        filterList.put("gregtech.machine.implosion_compressor", ConfigHandler.polesOptions.ImplosionCompressorEmissionRate);
-        filterList.put("gregtech.machine.pyrolyse_oven", ConfigHandler.polesOptions.PyrolyseOvenEmissionRate);
-        filterList.put("gregtech.machine.multi_furnace", ConfigHandler.polesOptions.MultiSmelterEmissionRate);
-        filterList.put("gregtech.machine.large_combustion_engine", ConfigHandler.polesOptions.LargeCombustionEmissionRate);
-        filterList.put("gregtech.machine.extreme_combustion_engine", ConfigHandler.polesOptions.LargeCombustionEmissionRate * 2);
-        filterList.put("gregtech.machine.large_turbine.gas", ConfigHandler.polesOptions.LargeGasTurbineEmissionRate);
-        filterList.put("gregtech.machine.large_boiler.bronze", ConfigHandler.polesOptions.LargeBoilerEmissionRate);
-        filterList.put("gregtech.machine.large_boiler.steel", ConfigHandler.polesOptions.LargeBoilerEmissionRate * 2);
-        filterList.put("gregtech.machine.large_boiler.titanium", ConfigHandler.polesOptions.LargeBoilerEmissionRate * 4);
-        filterList.put("gregtech.machine.large_boiler.tungstensteel", ConfigHandler.polesOptions.LargeBoilerEmissionRate * 6);
+        filterList.put("gregtech.machine.steam_boiler_coal_bronze", ConfigHandler.polOptions.BronzeBoilerEmissionRate);
+        filterList.put("gregtech.machine.steam_boiler_lava_bronze", ConfigHandler.polOptions.BronzeBoilerEmissionRate);
+        filterList.put("gregtech.machine.steam_furnace_bronze", ConfigHandler.polOptions.BronzeBoilerEmissionRate);
+        filterList.put("gregtech.machine.steam_boiler_lava_steel", ConfigHandler.polOptions.SteelBoilerEmissionRate);
+        filterList.put("gregtech.machine.steam_boiler_coal_steel", ConfigHandler.polOptions.SteelBoilerEmissionRate);
+        filterList.put("gregtech.machine.steam_furnace_steel", ConfigHandler.polOptions.SteelBoilerEmissionRate);
+        filterList.put("gregtech.machine.combustion_generator.lv", ConfigHandler.polOptions.CombustionEmissionRate);
+        filterList.put("gregtech.machine.combustion_generator.mv", ConfigHandler.polOptions.CombustionEmissionRate * 2);
+        filterList.put("gregtech.machine.combustion_generator.hv", ConfigHandler.polOptions.CombustionEmissionRate * 4);
+        filterList.put("gregtech.machine.gas_turbine.lv", ConfigHandler.polOptions.GasTurbineEmissionRate);
+        filterList.put("gregtech.machine.gas_turbine.mv", ConfigHandler.polOptions.GasTurbineEmissionRate * 2);
+        filterList.put("gregtech.machine.gas_turbine.hv", ConfigHandler.polOptions.GasTurbineEmissionRate * 4);
+        filterList.put("gregtech.machine.primitive_blast_furnace.bronze", ConfigHandler.polOptions.PBFEmissionRate);
+        filterList.put("gregtech.machine.electric_blast_furnace", ConfigHandler.polOptions.EBFEmissionRate);
+        filterList.put("gregtech.machine.implosion_compressor", ConfigHandler.polOptions.ImplosionCompressorEmissionRate);
+        filterList.put("gregtech.machine.pyrolyse_oven", ConfigHandler.polOptions.PyrolyseOvenEmissionRate);
+        filterList.put("gregtech.machine.multi_furnace", ConfigHandler.polOptions.MultiSmelterEmissionRate);
+        filterList.put("gregtech.machine.large_combustion_engine", ConfigHandler.polOptions.LargeCombustionEmissionRate);
+        filterList.put("gregtech.machine.extreme_combustion_engine", ConfigHandler.polOptions.LargeCombustionEmissionRate * 2);
+        filterList.put("gregtech.machine.large_turbine.gas", ConfigHandler.polOptions.LargeGasTurbineEmissionRate);
+        filterList.put("gregtech.machine.large_boiler.bronze", ConfigHandler.polOptions.LargeBoilerEmissionRate);
+        filterList.put("gregtech.machine.large_boiler.steel", ConfigHandler.polOptions.LargeBoilerEmissionRate * 2);
+        filterList.put("gregtech.machine.large_boiler.titanium", ConfigHandler.polOptions.LargeBoilerEmissionRate * 4);
+        filterList.put("gregtech.machine.large_boiler.tungstensteel", ConfigHandler.polOptions.LargeBoilerEmissionRate * 6);
 
 
     }

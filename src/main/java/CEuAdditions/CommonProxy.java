@@ -1,18 +1,14 @@
 package CEuAdditions;
 
-import CEuAdditions.api.CEuAdLogger;
-import CEuAdditions.api.pollution.SPacketPollution;
+// import CEuAdditions.common.item.CEuAMetaItems;
 import CEuAdditions.common.pollution.GT_Pollution;
 import CEuAdditions.common.pollution.GT_PollutionClient;
-import gregtech.api.net.NetworkHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,10 +30,11 @@ import java.util.HashMap;
             MinecraftForge.EVENT_BUS.register(new GT_PollutionClient());
         }
         public void preLoad() {
-            //  MetaItems.init();
+          //  CEuAMetaItems.init();
         }
 
         public void onLoad() {
+
         }
 
         public void onPostLoad() {

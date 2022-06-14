@@ -1,13 +1,13 @@
 package CEuAdditions;
 
 import CEuAdditions.api.ConfigHandler;
-import CEuAdditions.api.net.NetworkHandler;
+// import CEuAdditions.api.net.NetworkHandler;
 import CEuAdditions.api.pollution.PollutionUtil;
+import CEuAdditions.common.TileEntities.CEuAMetaTileEntities;
 import gregtech.api.GTValues;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 
 import java.util.Locale;
 
@@ -31,7 +31,8 @@ public class CEuAdditions {
     public void preInit(FMLPreInitializationEvent event) {
         Locale.setDefault(Locale.ENGLISH);
         polutil.initFilterList();
-        NetworkHandler.init();
+        // NetworkHandler.init();
+        CEuAMetaTileEntities.init();
     }
 
 

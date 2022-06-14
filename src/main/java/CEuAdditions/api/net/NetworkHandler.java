@@ -1,4 +1,4 @@
-package CEuAdditions.api.net;
+/* package CEuAdditions.api.net;
 
 import CEuAdditions.api.pollution.SPacketPollution;
 import gregtech.api.net.PacketHandler;
@@ -22,3 +22,6 @@ public class NetworkHandler {
         registerClientExecutor(SPacketPollution.class);
     }
 }
+
+
+ */

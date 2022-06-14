@@ -1,4 +1,4 @@
-package CEuAdditions.api.pollution;
+/* package CEuAdditions.api.pollution;
 
 import CEuAdditions.common.pollution.GT_Pollution;
 import gregtech.api.net.IPacket;
@@ -31,3 +31,5 @@ public class SPacketPollution implements IPacket {
         GT_Pollution.mPlayerPollution = pollution;
     }
 }
+
+ */

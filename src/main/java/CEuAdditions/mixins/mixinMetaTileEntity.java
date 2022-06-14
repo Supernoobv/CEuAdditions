@@ -36,9 +36,6 @@ public class mixinMetaTileEntity {
         return null;
     }
 
-
-
-
     @Shadow public String getMetaName() {
         CEuAdLogger.logger.error("Failed to shadow getMetaName()!");
         return "fail";
@@ -75,7 +72,7 @@ public class mixinMetaTileEntity {
     public void doExplosion(float explosionPower, CallbackInfo ci) {
         CEuAdLogger.logger.info("Explosion happened!");
         int explosionPowerint = (int) explosionPower;
-        additions.proxy.pollution.addPollution(getWorld().getChunk(getPos()).getPos(), (ConfigHandler.polesOptions.ExplosionEmissionAmount * explosionPowerint));
+        additions.proxy.pollution.addPollution(getWorld().getChunk(getPos()).getPos(), (ConfigHandler.polOptions.ExplosionEmissionAmount * explosionPowerint));
     }
 
 }

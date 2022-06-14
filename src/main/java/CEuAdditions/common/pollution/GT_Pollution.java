@@ -1,8 +1,6 @@
 package CEuAdditions.common.pollution;
 
 import CEuAdditions.CEuAdditions;
-import CEuAdditions.CommonProxy;
-import CEuAdditions.api.CEuAdLogger;
 import CEuAdditions.api.ConfigHandler;
 import CEuAdditions.api.pollution.PollutionUtil;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -17,13 +15,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class GT_Pollution {
@@ -32,7 +27,7 @@ public class GT_Pollution {
     // And also minor changes
     // (Don't judge me i just used this as a starting point, will be changed in the future!!)
     private static XSTR tRan = new XSTR();
-    private static final short cycleLen=400;
+    private static final short cycleLen=1200;
     public static int mPlayerPollution;
     private PollutionUtil util = new PollutionUtil();
     public World aWorld;

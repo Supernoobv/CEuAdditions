@@ -1,0 +1,14 @@
+ceuadditions.machine.scrubber.lv.name=Basic Pollution Scrubber
+ceuadditions.machine.scrubber.mv.name=Advanced Pollution Scrubber
+ceuadditions.machine.scrubber.hv.name=Advanced Pollution Scrubber II
+ceuadditions.machine.scrubber.ev.name=Advanced Pollution Scrubber III
+ceuadditions.machine.scrubber.iv.name=Elite Pollution Scrubber
+ceuadditions.machine.scrubber.luv.name=Elite Pollution Scrubber II
+ceuadditions.machine.scrubber.zpm.name=Elite Pollution Scrubber III
+ceuadditions.machine.scrubber.uv.name=Elite Pollution Scrubber IV
+
+
+ceuadditions.machine.scrubber.tooltip=Scrubs (currentPollution -= (%s * (1 << tier - 1) * 2) of pollution per scrub.;
+ceuadditions.machine.scrubber.tooltip.consumption=Consumes %s EU for each scrub
+
+

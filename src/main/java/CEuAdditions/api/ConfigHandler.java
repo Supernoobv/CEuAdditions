@@ -10,9 +10,6 @@ public class ConfigHandler {
     @Config.Comment("Config options for pollution-related features")
     public static PollutionOptions polOptions = new PollutionOptions();
 
-    @Config.Name("Pollution Emission")
-    @Config.Comment("Config options for pollution emission")
-    public static PollutionEmissionOptions polesOptions = new PollutionEmissionOptions();
 
 
     public static class PollutionOptions {
@@ -32,9 +29,12 @@ public class ConfigHandler {
         @Config.RangeInt(min = 1000)
         @Config.Comment({"The amount of pollution a chunk can have before sour rain damages the surroundings."})
         public int mPollutionSourRainLimit = 2000000;
-    }
 
-    public static class PollutionEmissionOptions {
+        @Config.RangeInt(min = 1)
+        @Config.Comment({"How much pollution will be scrubbed by a pollution scrubber.", "Each tier multiplies this value by 2."})
+        public int PollutionScrubberScrubAmount = 200;
+
+
         @Config.RangeInt(min = 1)
         @Config.Comment({"How much pollution Brozne Boilers will produce per tick."})
         public int BronzeBoilerEmissionRate = 2;
