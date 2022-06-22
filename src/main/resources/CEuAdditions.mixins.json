@@ -1,5 +1,5 @@
 {
-  "package": "CEuAdditions.mixins",
+  "package": "ceuadditions.mixins",
   "refmap": "mixins.CEuAdditions.refmap.json",
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",

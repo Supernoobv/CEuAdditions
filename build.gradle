@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         maven {
-			url = 'https://maven.cleanroommc.com'
+			url = 'https://files.minecraftforge.net/maven'
 		}
 		maven { 
 			url = 'https://repo.spongepowered.org/maven' 
@@ -130,6 +130,7 @@ jar {
 		if (project.use_mixins.toBoolean()) {
 			attribute_map['TweakClass'] = 'org.spongepowered.asm.launch.MixinTweaker'
 		}
+		attribute_map['ForceLoadAsMod'] = false
         attributes(attribute_map)
     }
 }
