@@ -7,8 +7,24 @@ ceuadditions.machine.scrubber.luv.name=Elite Pollution Scrubber II
 ceuadditions.machine.scrubber.zpm.name=Elite Pollution Scrubber III
 ceuadditions.machine.scrubber.uv.name=Elite Pollution Scrubber IV
 
+ceuadditions.machine.huge_fan.lv.name=Basic Huge Fan
+ceuadditions.machine.huge_fan.mv.name=Advanced Huge Fan
+ceuadditions.machine.huge_fan.hv.name=Advanced Huge Fan II
+ceuadditions.machine.huge_fan.ev.name=Advanced Huge Fan III
+ceuadditions.machine.huge_fan.iv.name=Elite Huge Fan
+ceuadditions.machine.huge_fan.luv.name=Elite Huge Fan II
+ceuadditions.machine.huge_fan.zpm.name=Elite Huge Fan III
+ceuadditions.machine.huge_fan.uv.name=Elite Huge Fan IV
+
+ceuadditions.machine.gas_turbine.ev.name=Nitro Gas Turbine
+ceuadditions.machine.steam_turbine.ev.name=Nitro Steam Turbine
+ceuadditions.machine.combustion_generator.ev.name=Nitro Combustion Generator
+
+ceuadditions.machine.large_scrubber.hv.name=Basic Large Scrubber
+ceuadditions.machine.large_scrubber.ev.name=Advanced Large Scrubber
+ceuadditions.machine.large_scrubber.iv.name=Advanced Large Scrubber II
 
 ceuadditions.machine.scrubber.tooltip=Scrubs (currentPollution -= (%s * (1 << tier - 1) * 2) of pollution per scrub.;
 ceuadditions.machine.scrubber.tooltip.consumption=Consumes %s EU for each scrub
 
-
+ceuadditions.machine.large_scrubber.tooltip.radius=Scrubs pollution in a %sx%,d Radius

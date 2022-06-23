@@ -7,10 +7,14 @@ import ceuadditions.common.TileEntities.Pollution.multi.parts.MetaTileEntityHuge
 import ceuadditions.common.client.ClientHandler;
 import ceuadditions.common.recipe.CEuARecipeMaps;
 import gregtech.api.GTValues;
+import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockTurbineCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.util.ResourceLocation;
 
 import static gregtech.common.metatileentities.MetaTileEntities.*;
@@ -52,11 +56,9 @@ public class CEuAMetaTileEntities {
             registerMetaTileEntity(21016 + i, HUGE_FAN[i]);
         }
 
-
-
-
-
-
+        COMBUSTION_GENERATOR[3] = registerMetaTileEntity(21024, new SimpleGeneratorMetaTileEntity(location("combustion_generator.ev"), RecipeMaps.COMBUSTION_GENERATOR_FUELS, Textures.COMBUSTION_GENERATOR_OVERLAY, 4, GTUtility.genericGeneratorTankSizeFunction));
+        STEAM_TURBINE[3] = registerMetaTileEntity(21025, new SimpleGeneratorMetaTileEntity(location("steam_turbine.ev"), RecipeMaps.STEAM_TURBINE_FUELS, Textures.STEAM_TURBINE_OVERLAY, 4, GTUtility.steamGeneratorTankSizeFunction));
+        GAS_TURBINE[3] = registerMetaTileEntity(21026, new SimpleGeneratorMetaTileEntity(location("gas_turbine.ev"), RecipeMaps.GAS_TURBINE_FUELS, Textures.GAS_TURBINE_OVERLAY, 4, GTUtility.genericGeneratorTankSizeFunction));
 
     }
 

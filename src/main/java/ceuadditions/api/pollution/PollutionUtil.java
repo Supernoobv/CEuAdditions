@@ -49,9 +49,11 @@ public class PollutionUtil {
         filterList.put("gregtech.machine.combustion_generator.lv", ConfigHandler.polOptions.CombustionEmissionRate);
         filterList.put("gregtech.machine.combustion_generator.mv", ConfigHandler.polOptions.CombustionEmissionRate * 2);
         filterList.put("gregtech.machine.combustion_generator.hv", ConfigHandler.polOptions.CombustionEmissionRate * 4);
+        filterList.put("gregtech.machine.combustion_generator.ev", ConfigHandler.polOptions.CombustionEmissionRate * 6);
         filterList.put("gregtech.machine.gas_turbine.lv", ConfigHandler.polOptions.GasTurbineEmissionRate);
         filterList.put("gregtech.machine.gas_turbine.mv", ConfigHandler.polOptions.GasTurbineEmissionRate * 2);
         filterList.put("gregtech.machine.gas_turbine.hv", ConfigHandler.polOptions.GasTurbineEmissionRate * 4);
+        filterList.put("gregtech.machine.gas_turbine.ev", ConfigHandler.polOptions.GasTurbineEmissionRate * 6);
         filterList.put("gregtech.machine.primitive_blast_furnace.bronze", ConfigHandler.polOptions.PBFEmissionRate);
         filterList.put("gregtech.machine.electric_blast_furnace", ConfigHandler.polOptions.EBFEmissionRate);
         filterList.put("gregtech.machine.implosion_compressor", ConfigHandler.polOptions.ImplosionCompressorEmissionRate);

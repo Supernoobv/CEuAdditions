@@ -46,8 +46,6 @@ public class SaveWorldPollution extends WorldSavedData {
         for (Map.Entry<ChunkPosDimension, Integer> e : CEuAdditions.proxy.dimensionWisePollution.entrySet()) {
             if (e.getKey() != null && e.getValue() != null) {
                 NBTTagCompound tag = e.getKey().writeToNBT();
-                if (e.getValue() > 0) CEuAdLogger.logger.info(e.getValue());
-
                 tag.setInteger("pollutionAmount", e.getValue());
                 pollutionList.appendTag(tag);
             }

@@ -5,6 +5,7 @@ import ceuadditions.CommonProxy;
 import ceuadditions.api.ConfigHandler;
 import ceuadditions.api.values.GregTechDataValues;
 import ceuadditions.api.values.MultiblockAbilities;
+import ceuadditions.common.TileEntities.Pollution.multi.parts.MetaTileEntityHugeFan;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
@@ -55,7 +56,7 @@ import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockController implements ITieredMetaTileEntity {
 
-    private static final int BaseEuConsumptionPerScrub = 40;
+    private static final int BaseEuConsumptionPerScrub = 50;
     private boolean isWorking;
 
 
@@ -70,6 +71,7 @@ public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockCon
 
     private boolean isWorkingEnabled = true;
 
+    private MetaTileEntityHugeFan fan = new MetaTileEntityHugeFan(null, 1);
 
     public MetaTileEntityLargePollutionScrubber(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, int tier, IBlockState casingState, IBlockState gearboxState, ICubeRenderer casingRenderer, boolean hasMufflerHatch, ICubeRenderer frontOverlay) {
         super(metaTileEntityId, recipeMap);
@@ -137,7 +139,7 @@ public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockCon
         super.updateFormedValid();
         if (this.energyContainer == null) return;
         if (getWorld().isRemote) return;
-        if (getOffsetTimer() % 20 != 0) return;
+        if (getOffsetTimer() % 80 != 0) return;
         Integer currentPollution = CommonProxy.pollution.getPollution(new ChunkPosDimension(getWorld().provider.getDimension(), getWorld().getChunk(getPos()).x, getWorld().getChunk(getPos()).z));
         boolean isWorkingNow = isAbleToWork(currentPollution);
         if (isWorkingNow != isWorking) {
@@ -147,13 +149,14 @@ public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockCon
         if (isWorking(currentPollution)) {
             this.energyContainer.removeEnergy(getEnergyConsumedPerScrub());
             this.isWorking = true;
-            int pollutiontoremove = (ConfigHandler.polOptions.PollutionScrubberScrubAmount * (1 << this.tier) * 2);
+            Integer pollutiontoremove = ConfigHandler.polOptions.MultiblockScrubberScrubamount * (1 << (tier + 3) * 2) * (fan.getTier() - 3);
+
             currentPollution -= pollutiontoremove;
             if (currentPollution <= 0) currentPollution = 0;
             Chunk chunk = getWorld().getChunk(getPos());
-            CEuAdditions.proxy.dimensionWisePollution.put(new ChunkPosDimension(getWorld().provider.getDimension(), chunk.x, chunk.z), currentPollution);
-            tryAndInsertItem(createStackList(pollutiontoremove / 20));
-            tryAndInsertFluid(createFluidStackList(pollutiontoremove / 10));
+            CEuAdditions.proxy.dimensionWisePollution.replace(new ChunkPosDimension(getWorld().provider.getDimension(), chunk.x, chunk.z), currentPollution);
+            tryAndInsertItem(createStackList(pollutiontoremove / 1400));
+            tryAndInsertFluid(createFluidStackList(pollutiontoremove / 1300));
             scrubRadius(getPos(), currentPollution, getTier(), pollutiontoremove);
         }
         else {
@@ -230,22 +233,23 @@ public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockCon
     }
 
     private void tryAndInsertItem(NonNullList<ItemStack> stack) {
-        if(GTTransferUtils.addItemsToItemHandler(getExportItems(), true, stack)) {
-            GTTransferUtils.addItemsToItemHandler(getExportItems(), false, stack);
+        if(GTTransferUtils.addItemsToItemHandler(this.outputInventory, true, stack)) {
+            GTTransferUtils.addItemsToItemHandler(this.outputInventory, false, stack);
         }
     }
 
     private void tryAndInsertFluid(NonNullList<FluidStack> stack) {
-        if(GTTransferUtils.addFluidsToFluidHandler(getExportFluids(), true, stack)) {
-            GTTransferUtils.addFluidsToFluidHandler(getExportFluids(), false, stack);
+        if(GTTransferUtils.addFluidsToFluidHandler(this.outputFluidInventory, true, stack)) {
+            GTTransferUtils.addFluidsToFluidHandler(this.outputFluidInventory, false, stack);
         }
     }
 
     private NonNullList<ItemStack> createStackList(int amountofitems) {
         NonNullList<ItemStack> stack = NonNullList.create();
-        stack.add(OreDictUnifier.get(dust, Materials.Sulfur, amountofitems + 2));
-        stack.add(OreDictUnifier.get(dust, Materials.Carbon, amountofitems + 5));
-        stack.add(OreDictUnifier.get(dust, Materials.DarkAsh, amountofitems + 3));
+        int newamount = amountofitems / 3;
+        stack.add(OreDictUnifier.get(dust, Materials.Sulfur, newamount + 15));
+        stack.add(OreDictUnifier.get(dust, Materials.Carbon, newamount + 25));
+        stack.add(OreDictUnifier.get(dust, Materials.DarkAsh, newamount + 35));
         return stack;
     }
     private NonNullList<FluidStack> createFluidStackList(int amount) {
@@ -253,14 +257,17 @@ public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockCon
         stack.add(Materials.CarbonMonoxide.getFluid(amount));
         return stack;
     }
-    private void scrubRadius(BlockPos pos, int newvalue, int radius, int amount) {
+    private void scrubRadius(BlockPos pos, Integer newvalue, int radius, int amount) {
         ChunkPos chunkpos = getWorld().getChunk(pos).getPos();
         for (int x = -radius; x <= radius; x++) {
             for (int z = -radius; z <= radius; z++) {
-                CEuAdditions.proxy.dimensionWisePollution.put(new ChunkPosDimension(getWorld().provider.getDimension(), chunkpos.x + x, chunkpos.z + z), newvalue);
-                tryAndInsertItem(createStackList(amount / 25));
-                tryAndInsertFluid(createFluidStackList(amount / 15));
-                this.energyContainer.removeEnergy(getEnergyConsumedPerScrub());
+                if (this.energyContainer.getEnergyStored() > getEnergyConsumedPerScrub()) {
+                    this.energyContainer.removeEnergy(getEnergyConsumedPerScrub());
+                    CEuAdditions.proxy.dimensionWisePollution.replace(new ChunkPosDimension(getWorld().provider.getDimension(), chunkpos.x + x, chunkpos.z + z), newvalue);
+                    tryAndInsertItem(createStackList(amount / 25));
+                    tryAndInsertFluid(createFluidStackList(amount / 15));
+                }
+                else break;
             }
         }
     }
@@ -292,7 +299,7 @@ public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockCon
         }
     }
 
-    protected int getEnergyConsumedPerScrub() {return BaseEuConsumptionPerScrub * (1 << (getTier()) * 2);}
+    protected int getEnergyConsumedPerScrub() {return BaseEuConsumptionPerScrub * (1 << (getTier() + 3) * 2);}
 
     @Override
     public boolean canVoidRecipeItemOutputs() {
@@ -312,8 +319,8 @@ public class MetaTileEntityLargePollutionScrubber extends RecipeMapMultiblockCon
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gregtech.multiblock.turbine.voltage_tooltip", GTValues.V[tier] * 2));
-        tooltip.add(I18n.format("gregtech.multiblock.turbine.efficiency_tooltip", GTValues.VNF[tier]));
+        tooltip.add(I18n.format("ceuadditions.machine.large_scrubber.tooltip.radius", getTier() + 2, getTier() + 2));
+        tooltip.add(I18n.format("ceuadditions.machine.scrubber.tooltip.consumption", getEnergyConsumedPerScrub()));
     }
 
     @Override

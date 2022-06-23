@@ -17,7 +17,7 @@ public class CEuARecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressWidget.MoveType.HORIZONTAL);
 
     public static final RecipeMap<SimpleRecipeBuilder> LARGE_SCRUBBING_RECIPES = new RecipeMap<>("scrubber",
-            1, 0, 0, 3,1, 1, 1, 1, new SimpleRecipeBuilder(), true)
+            1, 0, 0, 3,0, 1, 1, 1, new SimpleRecipeBuilder(), true)
             .setSound(GTSounds.TURBINE)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressWidget.MoveType.HORIZONTAL);
 }

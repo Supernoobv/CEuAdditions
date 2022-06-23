@@ -74,7 +74,6 @@ public class GT_Pollution {
 
                     }
                 }
-
                 if (tPollution > ConfigHandler.polOptions.mPollutionSmogLimit) {
                     AxisAlignedBB axisalignedbb = new AxisAlignedBB(chunk.x, 0, chunk.z << 4, (chunk.x) + 16, 256, (chunk.z << 4) + 16);
                     List<EntityLivingBase> entitys = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
@@ -90,42 +89,45 @@ public class GT_Pollution {
                                 entity.addPotionEffect(new PotionEffect(PollutionUtil.blindness, Math.min(tPollution / 2000, 1000), 1));
                         }
                     }
+                }
 
 
-                    if (tPollution > ConfigHandler.polOptions.mPollutionPoisonLimit) {
-                        for (EntityLivingBase entity : entitys) {
-                            if (!util.checkIfPlayerHasNano(entity) || (!util.checkIfPlayerHasQuarkTech(entity))) {
-                                switch (tRan.nextInt(4)) {
-                                    default:
-                                        entity.addPotionEffect(new PotionEffect(PollutionUtil.hunger, tPollution / 500000));
-                                    case 1:
-                                        entity.addPotionEffect(new PotionEffect(PollutionUtil.nausea, Math.min(tPollution / 2000, 1000), 1));
-                                    case 2:
-                                        entity.addPotionEffect(new PotionEffect(PollutionUtil.poison, Math.min(tPollution / 4000, 1000), tPollution / 500000));
-                                    case 3:
-                                        entity.addPotionEffect(new PotionEffect(PollutionUtil.blindness, Math.min(tPollution / 2000, 1000), 1));
-                                }
+                if (tPollution > ConfigHandler.polOptions.mPollutionPoisonLimit) {
+                    AxisAlignedBB axisalignedbb = new AxisAlignedBB(chunk.x, 0, chunk.z << 4, (chunk.x) + 16, 256, (chunk.z << 4) + 16);
+                    List<EntityLivingBase> entitys = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
+                    for (EntityLivingBase entity : entitys) {
+                        if (!util.checkIfPlayerHasNano(entity) || (!util.checkIfPlayerHasQuarkTech(entity))) {
+                            switch (tRan.nextInt(4)) {
+                                default:
+                                    entity.addPotionEffect(new PotionEffect(PollutionUtil.hunger, tPollution / 500000));
+                                case 1:
+                                    entity.addPotionEffect(new PotionEffect(PollutionUtil.nausea, Math.min(tPollution / 2000, 1000), 1));
+                                case 2:
+                                    entity.addPotionEffect(new PotionEffect(PollutionUtil.poison, Math.min(tPollution / 4000, 1000), tPollution / 500000));
+                                case 3:
+                                    entity.addPotionEffect(new PotionEffect(PollutionUtil.blindness, Math.min(tPollution / 2000, 1000), 1));
                             }
                         }
+                    }
+                }
 
 
-                        if (tPollution > ConfigHandler.polOptions.mPollutionVegetationLimit) {
-                            int f = 20;
-                            for (; f < (tPollution / 25000); f++) {
-                                int x = (chunk.x << 4) + tRan.nextInt(16);
-                                int y = 60 + (-f + tRan.nextInt(f * 2 + 1));
-                                int z = (chunk.z << 4) + tRan.nextInt(16);
-                                damageBlock(world, x, y, z, tPollution > ConfigHandler.polOptions.mPollutionSourRainLimit);
-                            }
-                        }
-
+                if (tPollution > ConfigHandler.polOptions.mPollutionVegetationLimit) {
+                    int f = 20;
+                    for (; f < (tPollution / 25000); f++) {
+                        int x = (chunk.x << 4) + tRan.nextInt(16);
+                        int y = 60 + (-f + tRan.nextInt(f * 2 + 1));
+                        int z = (chunk.z << 4) + tRan.nextInt(16);
+                        damageBlock(world, x, y, z, tPollution > ConfigHandler.polOptions.mPollutionSourRainLimit);
                     }
                 }
 
             }
-
         }
+
     }
+
+
     private static void damageBlock(World world, int x, int y, int z, boolean sourRain) {
         if (world.isRemote) return;
         IBlockState blockstate = world.getBlockState(new BlockPos(x, y, z));

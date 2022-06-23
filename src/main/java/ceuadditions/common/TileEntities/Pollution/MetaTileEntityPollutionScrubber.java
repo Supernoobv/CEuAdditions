@@ -4,6 +4,7 @@ import ceuadditions.CEuAdditions;
 import ceuadditions.CommonProxy;
 import ceuadditions.api.ConfigHandler;
 import ceuadditions.api.values.GregTechDataValues;
+import ceuadditions.common.TileEntities.Pollution.multi.parts.MetaTileEntityHugeFan;
 import ceuadditions.common.client.ClientHandler;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
@@ -46,6 +47,7 @@ public class MetaTileEntityPollutionScrubber extends SimpleMachineMetaTileEntity
 
     private boolean isWorking;
     private static final int BaseEuConsumptionPerScrub = 25;
+    private MetaTileEntityHugeFan fan;
     public MetaTileEntityPollutionScrubber(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier) {
         super(metaTileEntityId, recipeMap, renderer, tier, true);
         initializeInventory();
@@ -62,7 +64,6 @@ public class MetaTileEntityPollutionScrubber extends SimpleMachineMetaTileEntity
 
         boolean isWorkingNow = energyContainer.getEnergyStored() >= getEnergyConsumedPerScrub() && isBlockRedstonePowered();
         Integer currentPollution = CommonProxy.pollution.getPollution(new ChunkPosDimension(getWorld().provider.getDimension(), getWorld().getChunk(getPos()).x, getWorld().getChunk(getPos()).z));
-
         if (getWorld().isRemote) return;
         if (getOffsetTimer() % 20 != 0) return;
         if (currentPollution > 0) {
@@ -104,9 +105,10 @@ public class MetaTileEntityPollutionScrubber extends SimpleMachineMetaTileEntity
 
     private NonNullList<ItemStack> createStackList(int amountofitems) {
         NonNullList<ItemStack> stack = NonNullList.create();
-        stack.add(OreDictUnifier.get(dust, Materials.Sulfur, amountofitems + 2));
-        stack.add(OreDictUnifier.get(dust, Materials.Carbon, amountofitems + 5));
-        stack.add(OreDictUnifier.get(dust, Materials.DarkAsh, amountofitems + 3));
+        int newamount = amountofitems / 3;
+        stack.add(OreDictUnifier.get(dust, Materials.Sulfur, newamount + 15));
+        stack.add(OreDictUnifier.get(dust, Materials.Carbon, newamount + 25));
+        stack.add(OreDictUnifier.get(dust, Materials.DarkAsh, newamount + 35));
         return stack;
     }
     private NonNullList<FluidStack> createFluidStackList(int amount) {

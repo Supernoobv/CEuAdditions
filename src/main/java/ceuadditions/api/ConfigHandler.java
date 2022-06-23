@@ -34,6 +34,9 @@ public class ConfigHandler {
         @Config.Comment({"How much pollution will be scrubbed by a pollution scrubber.", "Each tier multiplies this value by 2."})
         public int PollutionScrubberScrubAmount = 200;
 
+        @Config.RangeInt(min = 1)
+        @Config.Comment({"How much pollution will be scrubbed by the multiblock scrubber. (SCALES PER TIER)"})
+        public int MultiblockScrubberScrubamount = 1000;
 
         @Config.RangeInt(min = 1)
         @Config.Comment({"How much pollution Brozne Boilers will produce per tick."})

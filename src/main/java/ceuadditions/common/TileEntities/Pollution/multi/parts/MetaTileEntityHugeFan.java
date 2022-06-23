@@ -202,6 +202,8 @@ public class MetaTileEntityHugeFan extends MetaTileEntityMultiblockPart implemen
     public void registerAbilities(List<IHugeFan> list) {
         list.add(this);
     }
+
+
 }
 
 
